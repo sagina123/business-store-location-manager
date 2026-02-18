@@ -1,0 +1,42 @@
+{% extends 'map/base.html' %}
+
+{% block title %}Sign Up - Business Store Location Manager{% endblock %}
+
+{% block nav_links %}
+<a href="{% url 'login' %}">Login</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Sign Up</h2>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Create your manager account.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div style="margin-bottom: 1rem; text-align: left;">
+            {{ field }}
+            {% if field.errors %}
+            <span style="color: #ef4444; font-size: 0.8rem;">{{ field.errors.0 }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Sign Up</button>
+    </form>
+
+    <div class="form-footer" style="margin-top: 1.5rem;">
+        Already have an account? <a href="{% url 'login' %}">Log in</a>
+    </div>
+</div>
+
+<style>
+    input {
+        width: 100%;
+        padding: 0.8rem;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: white;
+    }
+</style>
+{% endblock %}

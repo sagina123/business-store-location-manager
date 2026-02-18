@@ -1,0 +1,39 @@
+{% if request.resolver_match.url_name == "welcome" %}
+<a href="{% url 'welcome' %}" style="color: var(--text);">Dashboard</a>
+{% else %}
+<a href="{% url 'welcome' %}">Dashboard</a>
+{% endif %}
+
+{% if request.resolver_match.url_name == "map" %}
+<a href="{% url 'map' %}" style="color: var(--text);">Map</a>
+{% else %}
+<a href="{% url 'map' %}">Map</a>
+{% endif %}
+
+{% if request.resolver_match.url_name == "search" %}
+<a href="{% url 'search' %}" style="color: var(--text);">Search</a>
+{% else %}
+<a href="{% url 'search' %}">Search</a>
+{% endif %}
+
+{% if request.resolver_match.url_name == "add_store" %}
+<a href="{% url 'add_store' %}" style="color: var(--text);">Add Store</a>
+{% else %}
+<a href="{% url 'add_store' %}">Add Store</a>
+{% endif %}
+
+{% if request.resolver_match.url_name == "edit_stores_list" or request.resolver_match.url_name == "edit_store" %}
+<a href="{% url 'edit_stores_list' %}" style="color: var(--text);">Edit</a>
+{% else %}
+<a href="{% url 'edit_stores_list' %}">Edit</a>
+{% endif %}
+
+{% if request.resolver_match.url_name == "delete_stores_list" or request.resolver_match.url_name == "delete_store" %}
+<a href="{% url 'delete_stores_list' %}" style="color: var(--text);">Delete</a>
+{% else %}
+<a href="{% url 'delete_stores_list' %}">Delete</a>
+{% endif %}
+
+<a href="{% url 'help' %}">Help</a>
+<a href="{% url 'profile' %}">Profile</a>
+<a href="{% url 'logout_confirm' %}" class="btn-primary" style="margin-left: 1rem;">Logout</a>

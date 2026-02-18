@@ -1,0 +1,17 @@
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a href="{% url 'welcome' %}"
+        class="sidebar-btn {% if request.resolver_match.url_name == 'welcome' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'map' %}"
+        class="sidebar-btn {% if request.resolver_match.url_name == 'map' %}active{% endif %}">View Map</a>
+    <a href="{% url 'search' %}"
+        class="sidebar-btn {% if request.resolver_match.url_name == 'search' %}active{% endif %}">Search & Filter</a>
+    <a href="{% url 'add_store' %}"
+        class="sidebar-btn {% if request.resolver_match.url_name == 'add_store' %}active{% endif %}">Add Store</a>
+    <a href="{% url 'edit_stores_list' %}"
+        class="sidebar-btn {% if request.resolver_match.url_name == 'edit_stores_list' or request.resolver_match.url_name == 'edit_store' %}active{% endif %}">Edit
+        Store</a>
+    <a href="{% url 'delete_stores_list' %}"
+        class="sidebar-btn {% if request.resolver_match.url_name == 'delete_stores_list' or request.resolver_match.url_name == 'delete_store' %}active{% endif %}">Delete
+        Store</a>
+</div>

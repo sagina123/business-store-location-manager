@@ -1,0 +1,120 @@
+{% extends 'map/base.html' %}
+
+{% block title %}Edit Store - Business Store Location Manager{% endblock %}
+
+{% block nav_links %}
+{% include 'map/dashboard_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+    <h1 style="margin-bottom: 2rem;">Edit Store: {{ store.name }}</h1>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <!-- Form Section -->
+        <div class="card" style="padding: 2rem; max-width: 100%;">
+            <h2 style="margin-bottom: 1.5rem;">Store Details</h2>
+            <form method="post">
+                {% csrf_token %}
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Store Name</label>
+                    {{ form.name }}
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Location</label>
+                    {{ form.location }}
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Category</label>
+                    {{ form.category }}
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Description</label>
+                    {{ form.description }}
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem;">Latitude</label>
+                        {{ form.latitude }}
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem;">Longitude</label>
+                        {{ form.longitude }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Update Store</button>
+            </form>
+        </div>
+
+        <!-- Map Section -->
+        <div class="card" style="padding: 1rem; max-width: 100%;">
+            <h2 style="margin-bottom: 1rem;">Select Location on Map</h2>
+            <div id="map" style="height: 500px; width: 100%; border-radius: 8px;"></div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">Click on the map to update
+                coordinates</p>
+        </div>
+    </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+    var map = L.map('map').setView([20.5937, 78.9629], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var marker;
+
+    map.on('click', function (e) {
+        var lat = e.latlng.lat.toFixed(6);
+        var lng = e.latlng.lng.toFixed(6);
+
+        document.getElementById('id_latitude').value = lat;
+        document.getElementById('id_longitude').value = lng;
+
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+    });
+
+    // Set initial marker if coordinates exist
+    var initialLat = document.getElementById('id_latitude').value;
+    var initialLng = document.getElementById('id_longitude').value;
+    if (initialLat && initialLng) {
+        var pos = [initialLat, initialLng];
+        marker = L.marker(pos).addTo(map);
+        map.setView(pos, 12);
+    }
+</script>
+
+<style>
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1rem;
+    }
+
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+</style>
+{% endblock %}

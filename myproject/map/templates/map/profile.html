@@ -1,0 +1,73 @@
+{% extends 'map/base.html' %}
+
+{% block title %}Profile - Business Store Location Manager{% endblock %}
+
+{% block nav_links %}
+{% include 'map/dashboard_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width: 100%; max-width: 800px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Manager Profile</h1>
+        <p style="color: var(--text-muted);">Administrative credentials for Business Store Location Manager</p>
+    </div>
+
+    <div class="card" style="max-width: 100%; padding: 2rem; text-align: left;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+            <!-- Account Info -->
+            <div>
+                <h3
+                    style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; font-size: 1.1rem; color: var(--primary);">
+                    Account Information</h3>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <span
+                        style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Username</span>
+                    <span style="font-size: 1.1rem; font-weight: 500;">{{ user.username }}</span>
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <span
+                        style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Email
+                        Address</span>
+                    <span style="font-size: 1.1rem; font-weight: 500;">{{ user.email|default:"Not associated" }}</span>
+                </div>
+            </div>
+
+            <!-- Registration Details -->
+            <div>
+                <h3
+                    style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; font-size: 1.1rem; color: var(--primary);">
+                    System Metadata</h3>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <span
+                        style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Access
+                        Level</span>
+                    <span style="font-size: 1.1rem; font-weight: 500;">System Administrator</span>
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <span
+                        style="display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Authorized
+                        Since</span>
+                    <span style="font-size: 1.1rem; font-weight: 500;">{{ user.date_joined|date:"F Y" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Action -->
+        <div
+            style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); text-align: right;">
+            <a href="{% url 'welcome' %}" class="btn-primary" style="text-decoration: none; font-size: 0.9rem;">Return
+                to Dashboard</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center;">
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Security Notice: To update your administrative
+            credentials, please contact the central IT department.</p>
+    </div>
+</div>
+{% endblock %}

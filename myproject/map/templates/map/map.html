@@ -1,0 +1,56 @@
+{% extends 'map/base.html' %}
+
+{% block title %}Store Map - Business Store Location Manager{% endblock %}
+
+{% block nav_links %}
+{% include 'map/dashboard_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+    <h1 style="margin-bottom: 2rem;">Interactive Store Map</h1>
+
+    <div class="card" style="padding: 1rem; max-width: 100%;">
+        <div id="map" style="height: 600px; width: 100%; border-radius: 8px;"></div>
+    </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+{{ stores_json|json_script:"stores-data" }}
+
+<script>
+    var map = L.map('map').setView([20.5937, 78.9629], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var stores = JSON.parse(document.getElementById('stores-data').textContent);
+    var bounds = [];
+
+    stores.forEach(function (store) {
+        if (store.latitude && store.longitude) {
+            var marker = L.marker([store.latitude, store.longitude]).addTo(map);
+
+            var popupContent = '<b>' + store.name + '</b><br>' + store.location;
+            if (store.description) {
+                popupContent += '<br><small>' + store.description + '</small>';
+            }
+
+            marker.bindPopup(popupContent);
+            bounds.push([store.latitude, store.longitude]);
+        }
+    });
+
+    if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+    }
+</script>
+{% endblock %}

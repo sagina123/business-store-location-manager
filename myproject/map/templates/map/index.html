@@ -1,0 +1,23 @@
+{% extends 'map/base.html' %}
+
+{% block nav_links %}
+{% endblock %}
+
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+</style>
+
+<div style="text-align: center; max-width: 700px;">
+    <h1 style="font-size: 3.2rem; margin-bottom: 1.5rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;">
+        Business Store Location Manager</h1>
+    <p
+        style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; line-height: 1.7; font-family: 'Montserrat', sans-serif; font-weight: 600;">
+        Efficiently manage your business store locations with our premium mapping platform.<br>
+        Get complete control over your store distribution and manager information in one place.
+    </p>
+    <a href="{% url 'signup' %}" class="btn-primary"
+        style="padding: 1rem 3rem; font-size: 1.1rem; text-decoration: none; font-weight: 600; letter-spacing: 0.02em;">Get
+        Started</a>
+</div>
+{% endblock %}

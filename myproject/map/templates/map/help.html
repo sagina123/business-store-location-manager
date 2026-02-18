@@ -1,0 +1,56 @@
+{% extends 'map/base.html' %}
+
+{% block title %}Help - Business Store Location Manager{% endblock %}
+
+{% block nav_links %}
+{% include 'map/dashboard_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width: 100%; max-width: 1000px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Help Center</h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem;">Everything you need to know about <strong>Business Store
+                Location Manager</strong></p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <!-- Getting Started -->
+        <div class="card" style="text-align: left; padding: 2.5rem; max-width: 100%;">
+            <h3 style="margin-bottom: 1rem;">Getting Started</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6;">Learn the basics of managing your store ecosystem. Our
+                platform allows you to organize thousands of locations with precision.</p>
+            <ul style="margin-top: 1.5rem; padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">
+                <li style="margin-bottom: 0.5rem;">Setting up your manager profile</li>
+                <li style="margin-bottom: 0.5rem;">Understanding the dashboard KPI cards</li>
+                <li>Initial data migration guides</li>
+            </ul>
+        </div>
+
+        <!-- Location Management -->
+        <div class="card" style="text-align: left; padding: 2.5rem; max-width: 100%;">
+            <h3 style="margin-bottom: 1rem;">Location Management</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6;">Add, modify, or archive store locations globally. Use our
+                map-picker tool for exact coordinate placement.</p>
+            <ul style="margin-top: 1.5rem; padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">
+                <li style="margin-bottom: 0.5rem;">Adding stores with custom categories</li>
+                <li style="margin-bottom: 0.5rem;">Editing existing store descriptions</li>
+                <li>Batch deletion and system cleanup</li>
+            </ul>
+        </div>
+
+        <!-- Interactive Maps -->
+        <div class="card" style="text-align: left; padding: 2.5rem; max-width: 100%;">
+            <h3 style="margin-bottom: 1rem;">Interactive Visuals</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6;">Visualize your entire business reach on our dynamic map.
+                Analyze store clusters and regional presence instantly.</p>
+            <ul style="margin-top: 1.5rem; padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">
+                <li style="margin-bottom: 0.5rem;">Filtering by store category</li>
+                <li style="margin-bottom: 0.5rem;">Search and zoom functionality</li>
+                <li>Store detail popups overview</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
